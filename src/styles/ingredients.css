@@ -1,0 +1,32 @@
+.ingredients-list {
+  width: 67%;
+  float: left;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+.ingredients-list-tile {
+  margin-right: 1em;
+}
+
+.current-selections {
+  width: 33%;
+  max-width: 33%;
+  float: left;
+  height: 100%;
+}
+
+.selected-ingredients {
+  display: flex;
+  flex-direction: row;
+  border-left: 2px solid whiteSmoke;
+  height: 100%;
+}
+
+.selected-ingredient {
+  padding: .5em;
+  background-color: red;
+  color: white;
+}

@@ -1,0 +1,46 @@
+.Nav {
+  background: linear-gradient( 45deg, #26d9d0, #136c68);
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+  padding: 0 3em;
+  width: 100%;
+}
+
+.Nav-logo {
+  height: 80px;
+}
+
+.navHeadline {
+  color: white;
+  font-weight: 300;
+  font-size: 1.25em;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  height: auto;
+  align-self: center;
+}
+
+.navLinks {
+  display: block;
+  float: right;
+  align-self: center;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  justify-content: flex-end;
+  padding-right: 5em;
+}
+
+.navLink {
+  color: #e9fbfa;
+  float: left;
+  list-style: none;
+  padding: 0 1em;
+  font-size: .8em;
+}

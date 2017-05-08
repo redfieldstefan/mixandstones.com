@@ -1,0 +1,43 @@
+.Tile {
+  color: white;
+  background-color: #262626;
+  padding: 2em;
+  border-radius: 10px;
+  width: 100px;
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+}
+
+.Tile:hover {
+  background-color: #404040;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
+.Tile:active {
+  background-color: #262626;
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+}
+
+.Tile-image {
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+
+.Tile-title {
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 2em;
+  font-size: .7em;
+  font-weight: 300;
+}
+
+.Tile-description {
+  text-align: center;
+}

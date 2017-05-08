@@ -1,0 +1,36 @@
+{
+  "name": "mixandstones.com",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3001/",
+  "dependencies": {
+    "aws-sdk": "^2.48.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.5",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^3.4.0",
+    "nodemon": "^1.11.0",
+    "onchange": "^3.2.1",
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "start": "node server",
+    "build": "react-scripts build",
+    "dev-client": "react-scripts start",
+    "dev-server": "nodemon --watch api server.js",
+    "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\"",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "db": "mongod --dbpath=./data"
+  }
+}
