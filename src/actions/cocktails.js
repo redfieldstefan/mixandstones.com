@@ -5,6 +5,7 @@ export const ALL_COCKTAILS = "ALL_COCKTAILS";
 export const CREATE_COCKTAIL = "CREATE_COCKTAIL";
 export const COCKTAIL_CREATED = "COCKTAIL_CREATED";
 export const UPDATE_COCKTAIL = "UPDATE_COCKTAIL";
+export const CHANGE_STEP = "CHANGE_STEP";
 
 import api from "../api";
 
@@ -42,6 +43,12 @@ const actions = {
           cocktails: data.cocktails
         }
       });
+  },
+  changeStep: (step) => {
+    return {
+      type: CHANGE_STEP,
+      step
+    }
   }
 };
 

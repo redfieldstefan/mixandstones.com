@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "dev-client": "react-scripts start",
     "dev-server": "nodemon --watch api server.js",
-    "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\"",
+    "dev": "concurrently \"npm run db\" \"npm run dev-client\" \"npm run dev-server\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "db": "mongod --dbpath=./data"

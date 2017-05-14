@@ -1,11 +1,15 @@
-// import { GET_COCKTAILS } from "../actions/cocktails";
+import { CHANGE_STEP } from "../actions/cocktails";
 
-export const cocktails = (state = {}, action) => {
+const initialState = {
+  currentStep: "Choose Step"
+}
+
+export const cocktails = (state = initialState, action) => {
   switch(action.type){
-    case "GET_COCKTAILS":
+    case CHANGE_STEP:
       return {
         ...state,
-        cocktails: action.cocktails
+        currentStep: action.step
       };
     default:
       return state;
