@@ -1,14 +1,15 @@
-import { CHANGE_NAME } from "../actions/cocktails";
+import { CHANGE_FIELD } from "../actions/cocktails";
 
 const initialState = {
-  name: ''
+  name: '',
+	description: ''
 }
 export const newCocktail = (state = initialState, action) => {
   switch(action.type){
-    case CHANGE_NAME:
+    case CHANGE_FIELD:
       return {
-        ...state,
-        name: action.name
+       	...state,
+				...action.field
       };
       default:
         return state;

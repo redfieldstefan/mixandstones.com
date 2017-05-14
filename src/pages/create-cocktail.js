@@ -81,8 +81,13 @@ class CreateCocktail extends Component {
           </section>
           <section className="create-cocktail-sidebar">
             <h2>Your Cocktail: {this.props.newCocktail.name}</h2>
-            <input type="text"  value={this.props.newCocktail.name} placeholder="Choose Name" onChange={this.props.changeName}/>
-            <textarea placeholder="Brief description of your cocktail" />
+            <p>{this.props.newCocktail.description}</p>
+            <input type="text" name="name"  value={this.props.newCocktail.name} placeholder="Choose Name" onChange={this.props.changeField}/>
+            <textarea
+              name="description"
+              placeholder="Brief description of your cocktail" onChange={this.props.changeField}
+              value={this.props.newCocktail.value}
+             />
           </section>
         </div>
       </BasePage>
@@ -115,8 +120,11 @@ const mapDispatchToProps = (dispatch) => {
       console.log(step)
       dispatch(cocktailActions.changeStep(step));
     },
-    changeName: (e) => {
-      dispatch(cocktailActions.changeName(e.target.value));
+    changeField: (e) => {
+      const {
+        name, value
+      } = e.target;
+      dispatch(cocktailActions.changeField({[name]: value}));
     }
   };
 }
