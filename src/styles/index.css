@@ -1,5 +1,11 @@
 @import "./base-page.css";
 @import "./ingredients.css";
+@import "./tile.css";
+
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -9,6 +15,7 @@ body {
 
 h1, h2, h3, h4, h5, p, a {
   margin: 0;
+  font-weight: 400;
 }
 
 ul {
@@ -25,3 +32,16 @@ a {
 a:hover {
   color: #26d9d0;
 }
+
+.x-symbol {
+  padding-right: 5px;
+  width: 10px;
+}
+
+.sub-headline {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+

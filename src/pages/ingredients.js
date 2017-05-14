@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React, {Component} from "react";
-import { Tile } from "../components"
-import BasePage from "../components/BasePage";
+import { Tile, IngredientsList, SelectedIngredients } from "../components"
+import BasePage from "../components/base-page";
 import ingredientActions from "../actions/ingredients";
 
 class Ingredients extends Component {
@@ -19,28 +19,17 @@ class Ingredients extends Component {
     return (
       <BasePage>
         <div className="Ingredients">
-          <ul className="ingredients-list">
-            {
-              this.props.ingredients.map((ingredient, i) => (
-                <Tile
-                  className="ingredients-list-tile"
-                  key={i}
-                  ingredient={ingredient}
-                  onClick={toggleIngredient}
-                />
-              ))
-            }
-          </ul>
 
-          <div className="current-selections">
-            <ul className="selected-ingredients">
-              {
-                this.props.selectedIngredients.map((ingredient, i) => (
-                  <li className="selected-ingredient" key={i}>{ingredient.name}</li>
-                ))
-              }
-            </ul>
-          </div>
+          <IngredientsList
+            ingredients={this.props.ingredients}
+            toggleIngredient={toggleIngredient}
+            selectedIngredients={this.props.selectedIngredients}
+          />
+
+          <SelectedIngredients
+            ingredients={this.props.selectedIngredients}
+            onClick={toggleIngredient}
+          />
         </div>
       </BasePage>
     );

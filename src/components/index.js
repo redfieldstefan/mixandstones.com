@@ -1,11 +1,15 @@
-import Nav from "./Nav";
-import Tile from "./Tile";
-import TextInput from "./TextInput";
-import AddIngredientForm from "./AddIngredientForm";
+import AddIngredientForm from "./add-ingredient-form";
+import IngredientsList from "./ingredients-list";
+import Nav from "./nav";
+import SelectedIngredients from "./selected-ingredients";
+import Tile from "./tile";
+import TextInput from "./text-input";
 
 export {
-  Nav,
-  TextInput,
   AddIngredientForm,
+  IngredientsList,
+  Nav,
+  SelectedIngredients,
+  TextInput,
   Tile
 };

@@ -5,13 +5,12 @@ import '../styles/nav.css';
 const Nav = () => {
   return (
     <div className="Nav">
-      <h2 className="navHeadline">Mix and Stones</h2>
+      <Link className="navHeadline" to="/">
+        Mix and Stones
+      </Link>
       <ul className="navLinks">
         <li className="navLink">
-          <Link to="/">Home</Link>
-        </li>
-        <li className="navLink">
-          <Link to="/ingredients">Ingredients</Link>
+          <Link to="/create-cocktail">Create Cocktail</Link>
         </li>
         <li className="navLink">
           <Link to="/add-ingredients">Add Ingredient</Link>

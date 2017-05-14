@@ -1,3 +1,7 @@
+const parseJSON = (response) => {
+  return response.json()
+};
+
 export default {
   addIngredient: (ingredient) => {
     return fetch("/api/create-ingredient", {
@@ -8,10 +12,8 @@ export default {
       body: JSON.stringify(ingredient)
     })
   },
+
   fetchAllIngredients: (ingredient) => {
-    const parseJSON = (response) => {
-      return response.json()
-    }
     return fetch("/api/ingredients", {
       method: "GET",
       headers: {
@@ -19,5 +21,16 @@ export default {
       }
     })
     .then(parseJSON);
+  },
+
+  calculateCocktails: (ingredients) => {
+    return fetch("/api/calculate-cocktails", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: ingredients
+    })
+    .then(parseJSON)
   }
 };

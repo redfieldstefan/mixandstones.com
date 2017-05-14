@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import TextInput from "./TextInput";
+import TextInput from "./text-input";
 
 const AddIngredientForm = ({ingredient, onSubmit, onChange, handleImage }) => {
 

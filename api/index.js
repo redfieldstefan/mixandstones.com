@@ -5,7 +5,8 @@ var express = require("express"),
   mongoose = require("mongoose");
 
 var app = express();
-var createIngredient = express.Router();
+var cocktails = express.Router();
+var ingredients = express.Router();
 var server,
   port;
 
@@ -13,10 +14,12 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mixandstones_s
 
 server = http.createServer(app);
 
-app.use(express.static(__dirname + "/build"));
+app.use(express.static(__dirname + "/build/index.html"));
 
-require('./create-ingredient')(createIngredient);
-app.use('/api', createIngredient);
+require('./ingredients')(ingredients);
+require('./cocktails')(cocktails);
+app.use('/api', ingredients);
+app.use('/api', cocktails);
 
 port = process.env.PORT || 4000;
 

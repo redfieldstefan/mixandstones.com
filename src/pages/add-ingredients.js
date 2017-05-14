@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
-import AddIngredientForm from "../components/AddIngredientForm";
-import BasePage from "../components/BasePage";
+import AddIngredientForm from "../components/add-ingredient-form";
+import BasePage from "../components/base-page";
 import ingredientActions from "../actions/ingredients";
 
 class AddIngredients extends Component {

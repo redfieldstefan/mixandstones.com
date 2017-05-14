@@ -2,12 +2,14 @@
 
 var Ingredient = require('./models/Ingredient.js');
 var bodyparser = require('body-parser');
+var urlify = require("./helpers/urlify");
 
 module.exports = function(router) {
   router.use(bodyparser.json());
 
   router.post("/create-ingredient", function(req, res) {
     var newIngredient = new Ingredient(req.body);
+    newIngredient.url = urlify(newIngredient.name);
     newIngredient.save()
       .then((data) => {
         return res.status(200).json({msg: `${newIngredient.name} has been created`, data})
