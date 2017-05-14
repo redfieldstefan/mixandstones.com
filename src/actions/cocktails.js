@@ -6,6 +6,7 @@ export const CREATE_COCKTAIL = "CREATE_COCKTAIL";
 export const COCKTAIL_CREATED = "COCKTAIL_CREATED";
 export const UPDATE_COCKTAIL = "UPDATE_COCKTAIL";
 export const CHANGE_STEP = "CHANGE_STEP";
+export const CHANGE_NAME = "CHANGE_NAME";
 
 import api from "../api";
 
@@ -48,6 +49,12 @@ const actions = {
     return {
       type: CHANGE_STEP,
       step
+    }
+  },
+  changeName: (name) => {
+    return {
+      type: CHANGE_NAME,
+      name
     }
   }
 };
