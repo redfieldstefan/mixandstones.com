@@ -1,9 +1,10 @@
 import React, { PropTypes } from "react";
+import classnames from "classnames";
 
 import selectX from "../../images/select-x.png";
 
-const StepSelect = ({step, image, onClick}) => (
-  <div className="StepSelect" onClick={() => {
+const StepSelect = ({className, step, image, onClick}) => (
+  <div className={classnames("StepSelect", className)} onClick={() => {
     onClick(step);
   }}>
     <img src={image ? image : selectX} />

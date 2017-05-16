@@ -6,6 +6,7 @@ import ingredientActions from "../actions/ingredients";
 import IngredientsList from "../components/ingredients-list";
 import SelectedIngredients from "../components/selected-ingredients";
 import StepSelect from "../components/step-select";
+import TextInput from "../components/text-input";
 
 class CreateCocktail extends Component {
 
@@ -14,11 +15,26 @@ class CreateCocktail extends Component {
   }
 
   render () {
+
+    const {
+      addIngredient,
+      cocktail,
+      changeField,
+      changeStep,
+      currentStep,
+      ingredients,
+      newCocktail,
+      selectedIngredients,
+      toggleIngredient,
+      updateCocktail,
+      updateIngredient
+    } = this.props;
+
     const _handleChange = (e) => {
       e.preventDefault();
       const {name, value} = e.target;
 
-      this.props.updateCocktail({
+      updateCocktail({
         [name]: value
       });
     };
@@ -26,50 +42,56 @@ class CreateCocktail extends Component {
     const _handleImage = (e) => {
       e.preventDefault();
 
-      this.props.updateIngredient({
+      updateIngredient({
         imageFile: e.target.files[0]
       });
     }
 
-    const _addIngredient = (e) => {
-      e.preventDefault();
-      this.props.addIngredient(this.props.ingredient)
-    };
-
-    const toggleIngredient = (ingredient) => {
-      this.props.toggleIngredient(ingredient)
-    };
-
     const createCocktail = () => {
-      this.props.createCocktail(this.props.cocktail);
+      createCocktail(cocktail);
     };
 
     return (
       <BasePage>
         <div className="CreateCocktailPage">
           <section className="create-cocktail-current-step">
-            <h2>Get Started</h2>
 
-
-            <StepSelect step="Choose Ingredients" onClick={this.props.changeStep} />
-            <StepSelect step="Write Instructions" onClick={this.props.changeStep} />
-            <StepSelect step="Add Image" onClick={this.props.changeStep} />
+            <div className="create-cocktail-steps">
+              <StepSelect
+                className={`create-cocktail-step selected-${currentStep === "Choose Ingredients"}`}
+                step="Choose Ingredients"
+                onClick={changeStep}
+              />
+              <StepSelect
+                className={`create-cocktail-step selected-${currentStep === "Write Instructions"}`}
+                step="Write Instructions"
+                onClick={changeStep}
+              />
+              <StepSelect
+                className={`create-cocktail-step selected-${currentStep === "Add Image"}`}
+                step="Add Image"
+                onClick={changeStep}
+              />
+            </div>
 
             {
-              this.props.currentStep === "Choose Ingredients" &&
+              currentStep === "Choose Ingredients" &&
               <IngredientsList
-                ingredients={this.props.ingredients}
-                selectedIngredients={this.props.selectedIngredients}
+                className="create-cocktail-add-to-list full-width"
+                ingredients={ingredients}
+                selectedIngredients={selectedIngredients}
+                toggleIngredient={toggleIngredient}
+
               />
             }
 
             {
-              this.props.currentStep === "Write Instructions" &&
+              currentStep === "Write Instructions" &&
               <textarea placeholder="Enter instructions for your cocktail"/>
             }
 
             {
-              this.props.currentStep === "Add Image" &&
+              currentStep === "Add Image" &&
               <input
                 id="file-selector"
                 type="file"
@@ -79,15 +101,28 @@ class CreateCocktail extends Component {
             }
 
           </section>
+
           <section className="create-cocktail-sidebar">
-            <h2>Your Cocktail: {this.props.newCocktail.name}</h2>
-            <p>{this.props.newCocktail.description}</p>
-            <input type="text" name="name"  value={this.props.newCocktail.name} placeholder="Choose Name" onChange={this.props.changeField}/>
+            <h2>Your Cocktail: {newCocktail.name}</h2>
+            <p>{newCocktail.description}</p>
+            <TextInput
+              className="full-width"
+              name="name"
+              value={newCocktail.name}
+              placeholder="Choose Name"
+              onChange={changeField}
+            />
             <textarea
+              className="TextArea full-width"
               name="description"
-              placeholder="Brief description of your cocktail" onChange={this.props.changeField}
-              value={this.props.newCocktail.value}
+              placeholder="Brief description of your cocktail" onChange={changeField}
+              value={newCocktail.value}
              />
+            <SelectedIngredients
+              className="full-width"
+              ingredients={selectedIngredients}
+              onClick={toggleIngredient}
+            />
           </section>
         </div>
       </BasePage>
@@ -116,14 +151,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(ingredientActions.toggleIngredient(ingredient));
     },
     changeStep: (step) => {
-      console.log("STEP")
-      console.log(step)
       dispatch(cocktailActions.changeStep(step));
     },
     changeField: (e) => {
-      const {
-        name, value
-      } = e.target;
+      const { name, value } = e.target;
       dispatch(cocktailActions.changeField({[name]: value}));
     }
   };

@@ -1,0 +1,11 @@
+.TextInput, .TextArea {
+  background: none;
+  border: none;
+  border-bottom: 2px dashed whiteSmoke;
+  margin-top: 3em;
+}
+
+.TextInput:focus, .TextArea:focus {
+  outline: none;
+  border-bottom: 2px dashed #26d9d0;
+}

@@ -1,9 +1,11 @@
 import React, {PropTypes} from "react";
+import classnames from "classnames";
 
-const TextInput = ({onChange, placeholder, value, ...restOfProps}) => {
+const TextInput = ({className, onChange, placeholder, value, ...restOfProps}) => {
   return (
     <input
       {...restOfProps}
+      className={classnames("TextInput", className)}
       type="text"
       value={value}
       placeholder={placeholder}
