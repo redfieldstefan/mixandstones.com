@@ -12,7 +12,7 @@ const IngredientsList = ({ingredients, selectedIngredients, toggleIngredient}) =
                 `ingredients-list-tile
                 ${selectedIngredients.indexOf(ingredient) > -1 ?
                 "selected" :
-                ''
+                ""
                 }`
               }
               key={i}

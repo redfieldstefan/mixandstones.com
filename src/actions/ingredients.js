@@ -13,7 +13,7 @@ const actions = {
   addIngredient: (ingredient) => (dispatch) => {
     const file = ingredient.imageFile;
     var bucket = new AWS.S3({ params: { Bucket: "mix-and-stones-ingredients"} });
-    bucket.config.region = 'us-west-1';
+    bucket.config.region = "us-west-1";
     bucket.config.update(awsConfig);
 
     var params = {Key: file.name, ContentType: file.type, Body: file};

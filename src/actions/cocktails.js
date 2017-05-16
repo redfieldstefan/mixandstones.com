@@ -13,14 +13,14 @@ const actions = {
   createCocktail: (cocktail) => (dispatch) => {
     const file = cocktail.imageFile;
     var bucket = new AWS.S3({ params: { Bucket: "mix-and-stones-cocktails"} });
-    bucket.config.region = 'us-west-1';
+    bucket.config.region = "us-west-1";
     bucket.config.update(awsConfig);
 
     var params = {Key: file.name, ContentType: file.type, Body: file};
 
     return bucket.putObject(params, function (err, data) {
       if(err) {
-        return console.log(err);
+        return console.error(err);
       }
       cocktail.image = `https://s3-us-west-2.amazonaws.com/mix-and-stones-cocktails/${file.name}`;
       api.createCocktail(cocktail)
