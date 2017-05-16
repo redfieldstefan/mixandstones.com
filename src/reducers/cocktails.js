@@ -1,7 +1,7 @@
 import { CHANGE_STEP } from "../actions/cocktails";
 
 const initialState = {
-  currentStep: "Choose Step"
+  currentStep: "Basics"
 }
 
 export const cocktails = (state = initialState, action) => {

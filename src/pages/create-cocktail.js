@@ -8,6 +8,12 @@ import SelectedIngredients from "../components/selected-ingredients";
 import StepSelect from "../components/step-select";
 import TextInput from "../components/text-input";
 
+// Icons
+import basics from "../../images/ic_assignment_black_24px.svg";
+import create from "../../images/ic_create_black_24px.svg";
+import cherry from "../../images/1494323023_Cherry.png";
+import uploadImage from "../../images/ic_add_to_photos_black_48px.svg";
+
 class CreateCocktail extends Component {
 
   componentDidMount() {
@@ -30,15 +36,6 @@ class CreateCocktail extends Component {
       updateIngredient
     } = this.props;
 
-    const _handleChange = (e) => {
-      e.preventDefault();
-      const {name, value} = e.target;
-
-      updateCocktail({
-        [name]: value
-      });
-    };
-
     const _handleImage = (e) => {
       e.preventDefault();
 
@@ -48,6 +45,10 @@ class CreateCocktail extends Component {
     }
 
     const createCocktail = () => {
+      const cocktail = {
+        ...newCocktail,
+        ingredients: selectedIngredients
+      }
       createCocktail(cocktail);
     };
 
@@ -58,16 +59,25 @@ class CreateCocktail extends Component {
 
             <div className="create-cocktail-steps">
               <StepSelect
+                image={basics}
+                className={`create-cocktail-step selected-${currentStep === "Basics"}`}
+                step="Basics"
+                onClick={changeStep}
+              />
+              <StepSelect
+                image={cherry}
                 className={`create-cocktail-step selected-${currentStep === "Choose Ingredients"}`}
                 step="Choose Ingredients"
                 onClick={changeStep}
               />
               <StepSelect
+                image={create}
                 className={`create-cocktail-step selected-${currentStep === "Write Instructions"}`}
                 step="Write Instructions"
                 onClick={changeStep}
               />
               <StepSelect
+                image={uploadImage}
                 className={`create-cocktail-step selected-${currentStep === "Add Image"}`}
                 step="Add Image"
                 onClick={changeStep}
@@ -75,9 +85,28 @@ class CreateCocktail extends Component {
             </div>
 
             {
+              currentStep === "Basics" &&
+              <div className="step-basic">
+                <TextInput
+                  className="full-width"
+                  name="name"
+                  value={newCocktail.name}
+                  placeholder="Choose Name"
+                  onChange={changeField}
+                />
+                <textarea
+                  className="TextArea step-description full-width"
+                  name="description"
+                  placeholder="Brief description of your cocktail" onChange={changeField}
+                  value={newCocktail.value}
+                />
+              </div>
+            }
+
+            {
               currentStep === "Choose Ingredients" &&
               <IngredientsList
-                className="create-cocktail-add-to-list full-width"
+                className="create-cocktail-add-to-list full-width step-section"
                 ingredients={ingredients}
                 selectedIngredients={selectedIngredients}
                 toggleIngredient={toggleIngredient}
@@ -87,42 +116,38 @@ class CreateCocktail extends Component {
 
             {
               currentStep === "Write Instructions" &&
-              <textarea placeholder="Enter instructions for your cocktail"/>
+              <textarea
+                name="instructions"
+                className="TextArea step-instructions step-section"
+                placeholder="Enter instructions for your cocktail"
+                onChange={changeField}
+              />
             }
 
             {
               currentStep === "Add Image" &&
               <input
+                className="step-section"
                 id="file-selector"
                 type="file"
                 name="imageFile"
                 accept="image/*"
               />
             }
-
           </section>
 
           <section className="create-cocktail-sidebar">
-            <h2>Your Cocktail: {newCocktail.name}</h2>
-            <p>{newCocktail.description}</p>
-            <TextInput
-              className="full-width"
-              name="name"
-              value={newCocktail.name}
-              placeholder="Choose Name"
-              onChange={changeField}
-            />
-            <textarea
-              className="TextArea full-width"
-              name="description"
-              placeholder="Brief description of your cocktail" onChange={changeField}
-              value={newCocktail.value}
-             />
+            <h2>Your Cocktail:</h2>
+            <h3 className="new-cocktail-name color-light-orange">{newCocktail.name}</h3>
+            <p className="new-cocktail-description color-dark-salmon">{newCocktail.description}</p>
             <SelectedIngredients
-              className="full-width"
+              className="full-width new-cocktail-ingredients"
               ingredients={selectedIngredients}
               onClick={toggleIngredient}
             />
+            <p className="margin-top full-width left new-cocktail-instructions color-purple">
+              {newCocktail.instructions}
+            </p>
           </section>
         </div>
       </BasePage>

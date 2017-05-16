@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../styles/nav.css';
 
 const Nav = () => {
   return (
@@ -9,6 +8,9 @@ const Nav = () => {
         Mix and Stones
       </Link>
       <ul className="navLinks">
+        <li className="navLink">
+          <Link to="/ingredients">Ingredients</Link>
+        </li>
         <li className="navLink">
           <Link to="/create-cocktail">Create Cocktail</Link>
         </li>
