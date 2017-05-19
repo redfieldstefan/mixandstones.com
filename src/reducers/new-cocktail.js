@@ -1,8 +1,9 @@
 import { CHANGE_FIELD } from "../actions/cocktails";
 
 const initialState = {
-  name: '',
-	description: ''
+  name: "",
+	description: "",
+  instructions: ""
 }
 export const newCocktail = (state = initialState, action) => {
   switch(action.type){

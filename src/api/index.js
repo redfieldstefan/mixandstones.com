@@ -32,5 +32,16 @@ export default {
       body: ingredients
     })
     .then(parseJSON)
+  },
+
+  createCocktail: (cocktail) => {
+    return fetch("/api/create-cocktail", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cocktail)
+    })
+    .then(parseJSON)
   }
 };

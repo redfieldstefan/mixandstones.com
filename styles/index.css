@@ -63,3 +63,7 @@ a:hover {
 .margin-top {
   margin-top: 2em;
 }
+
+.display-none {
+  display: none !important;
+}

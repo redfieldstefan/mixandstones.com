@@ -23,10 +23,11 @@ class CreateCocktail extends Component {
   render () {
 
     const {
-      addIngredient,
+      addImage,
       cocktail,
       changeField,
       changeStep,
+      createCocktail,
       currentStep,
       ingredients,
       newCocktail,
@@ -36,21 +37,20 @@ class CreateCocktail extends Component {
       updateIngredient
     } = this.props;
 
-    const _handleImage = (e) => {
-      e.preventDefault();
-
-      updateIngredient({
-        imageFile: e.target.files[0]
-      });
-    }
-
-    const createCocktail = () => {
+    const _createCocktail = () => {
       const cocktail = {
-        ...newCocktail,
-        ingredients: selectedIngredients
-      }
-      createCocktail(cocktail);
+        ...this.props.newCocktail,
+        ingredients: this.props.selectedIngredients
+      };
+      createCocktail(cocktail)
     };
+
+    const notStarted = (
+      !newCocktail.name.length &&
+      !newCocktail.description.length &&
+      !selectedIngredients.length &&
+      !newCocktail.instructions.length
+    );
 
     return (
       <BasePage>
@@ -126,28 +126,45 @@ class CreateCocktail extends Component {
 
             {
               currentStep === "Add Image" &&
-              <input
-                className="step-section"
-                id="file-selector"
-                type="file"
-                name="imageFile"
-                accept="image/*"
-              />
+              <div>
+                <label className="create-cocktail-upload-photo" for="imageFile">
+                  <img src={uploadImage} className="create-cocktail-upload-image" />
+                  Choose a file
+                  <input
+                    className="step-section display-none"
+                    id="file-selector"
+                    type="file"
+                    name="imageFile"
+                    accept="image/*"
+                    onChange={addImage}
+                  />
+                </label>
+              </div>
             }
           </section>
 
           <section className="create-cocktail-sidebar">
-            <h2>Your Cocktail:</h2>
+            { notStarted &&
+              <p className="create-cocktail-nudge">
+                Start creating your cocktail
+              </p>
+            }
             <h3 className="new-cocktail-name color-light-orange">{newCocktail.name}</h3>
-            <p className="new-cocktail-description color-dark-salmon">{newCocktail.description}</p>
+            <p className="new-cocktail-description">{newCocktail.description}</p>
             <SelectedIngredients
               className="full-width new-cocktail-ingredients"
               ingredients={selectedIngredients}
               onClick={toggleIngredient}
             />
-            <p className="margin-top full-width left new-cocktail-instructions color-purple">
+            <p className="margin-top full-width left new-cocktail-instructions">
               {newCocktail.instructions}
             </p>
+            <button
+              className="create-cocktail-button"
+              onClick={_createCocktail}
+            >
+              Create Cocktail
+            </button>
           </section>
         </div>
       </BasePage>
@@ -166,6 +183,13 @@ const mapStateToProps = ({ingredients, cocktails, newCocktail}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    addImage: (e) => {
+      e.preventDefault();
+
+      dispatch(cocktailActions.changeField({
+        imageFile: e.target.files[0]
+      }));
+    },
     fetchAllIngredients: () => {
       dispatch(ingredientActions.fetchAllIngredients());
     },
@@ -181,6 +205,9 @@ const mapDispatchToProps = (dispatch) => {
     changeField: (e) => {
       const { name, value } = e.target;
       dispatch(cocktailActions.changeField({[name]: value}));
+    },
+    createCocktail: (cocktail) => {
+      dispatch(cocktailActions.createCocktail(cocktail));
     }
   };
 }
