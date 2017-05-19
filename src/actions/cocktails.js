@@ -5,6 +5,7 @@ export const ALL_COCKTAILS = "ALL_COCKTAILS";
 export const CREATE_COCKTAIL = "CREATE_COCKTAIL";
 export const COCKTAIL_CREATED = "COCKTAIL_CREATED";
 export const UPDATE_COCKTAIL = "UPDATE_COCKTAIL";
+export const CHANGE_FIELD = "CHANGE_FIELD";
 
 import api from "../api";
 
@@ -12,14 +13,14 @@ const actions = {
   createCocktail: (cocktail) => (dispatch) => {
     const file = cocktail.imageFile;
     var bucket = new AWS.S3({ params: { Bucket: "mix-and-stones-cocktails"} });
-    bucket.config.region = 'us-west-1';
+    bucket.config.region = "us-west-1";
     bucket.config.update(awsConfig);
 
     var params = {Key: file.name, ContentType: file.type, Body: file};
 
     return bucket.putObject(params, function (err, data) {
       if(err) {
-        return console.log(err);
+        return console.error(err);
       }
       cocktail.image = `https://s3-us-west-2.amazonaws.com/mix-and-stones-cocktails/${file.name}`;
       api.createCocktail(cocktail)
@@ -42,6 +43,18 @@ const actions = {
           cocktails: data.cocktails
         }
       });
+  },
+  changeStep: (step) => {
+    return {
+      type: UPDATE_COCKTAIL,
+      step
+    }
+  },
+  changeField: (field) => {
+    return {
+      type: CHANGE_FIELD,
+      field
+    }
   }
 };
 

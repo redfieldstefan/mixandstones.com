@@ -1,0 +1,23 @@
+.CreateCocktailPage {
+  width: 100%;
+  display: inline-block;
+}
+
+.create-cocktail-current-step {
+  display: block;
+  width: 60%;
+  float: left;
+}
+
+.create-cocktail-sidebar {
+  display: inline-block;
+  width: 40%;
+  background-color: whiteSmoke;
+  height: 100%;
+}
+
+.StepSelect {
+  display: block;
+  width: 25%;
+  cursor: pointer;
+}

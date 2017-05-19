@@ -30,6 +30,7 @@ class Ingredients extends Component {
             ingredients={this.props.selectedIngredients}
             onClick={toggleIngredient}
           />
+
         </div>
       </BasePage>
     );

@@ -7,6 +7,7 @@
     "aws-sdk": "^2.48.0",
     "body-parser": "^1.17.1",
     "classnames": "^2.2.5",
+    "eslint": "^3.19.0",
     "express": "^4.15.2",
     "lodash": "^4.17.4",
     "mongoose": "^4.9.5",
@@ -21,16 +22,19 @@
   },
   "devDependencies": {
     "concurrently": "^3.4.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.1",
     "nodemon": "^1.11.0",
     "onchange": "^3.2.1",
     "react-scripts": "0.9.5"
   },
   "scripts": {
     "start": "node server",
+    "lint": "./node_modules/.bin/eslint src api",
     "build": "react-scripts build",
     "dev-client": "react-scripts start",
     "dev-server": "nodemon --watch api server.js",
-    "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\"",
+    "dev": "concurrently \"npm run db\" \"npm run dev-client\" \"npm run dev-server\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "db": "mongod --dbpath=./data"

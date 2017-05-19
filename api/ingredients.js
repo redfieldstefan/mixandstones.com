@@ -1,7 +1,7 @@
 "use strict";
 
-var Ingredient = require('./models/Ingredient.js');
-var bodyparser = require('body-parser');
+var Ingredient = require("./models/Ingredient.js");
+var bodyparser = require("body-parser");
 var urlify = require("./helpers/urlify");
 
 module.exports = function(router) {
