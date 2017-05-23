@@ -1,9 +1,10 @@
+import classnames from "classnames";
 import React, {PropTypes} from "react";
 import Tile from "./tile";
 
-const IngredientsList = ({ingredients, selectedIngredients, toggleIngredient}) => {
+const IngredientsList = ({className, ingredients, selectedIngredients, toggleIngredient}) => {
   return (
-    <ul className="ingredients-list">
+    <ul className={classnames("IngredientsList", className)}>
       {
         ingredients.map((ingredient, i) => (
           <li className="ingredients-list-tile-container">

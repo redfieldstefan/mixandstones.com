@@ -12,10 +12,10 @@ const App = () => {
     <Router>
       <div>
         <Nav />
-        <Route exact path="/" component={Ingredients} />
-        <Route path="/ingredients" component={Ingredients} />
-        <Route path="/add-ingredients" component={AddIngredients} />
-        <Route path="/create-cocktail" component={CreateCocktail} />
+        <Route exact path='/' component={CreateCocktail} />
+        <Route path='/ingredients' component={Ingredients} />
+        <Route path='/add-ingredients' component={AddIngredients} />
+        <Route path='/create-cocktail' component={CreateCocktail} />
       </div>
     </Router>
   )

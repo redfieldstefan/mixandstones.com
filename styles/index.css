@@ -1,6 +1,9 @@
 @import "./base-page.css";
+@import "./colors.css";
 @import "./create-cocktail.css";
 @import "./ingredients.css";
+@import "./nav.css";
+@import "./text-input.css";
 @import "./tile.css";
 
 
@@ -45,4 +48,22 @@ a:hover {
   letter-spacing: .05em;
 }
 
+.full-width {
+  width: 100%;
+}
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.margin-top {
+  margin-top: 2em;
+}
+
+.display-none {
+  display: none !important;
+}

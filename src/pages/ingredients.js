@@ -11,24 +11,19 @@ class Ingredients extends Component {
   }
 
   render() {
-
-    const toggleIngredient = (ingredient) => {
-      this.props.toggleIngredient(ingredient)
-    };
-
     return (
       <BasePage>
         <div className="Ingredients">
 
           <IngredientsList
             ingredients={this.props.ingredients}
-            toggleIngredient={toggleIngredient}
+            toggleIngredient={this.props.toggleIngredient}
             selectedIngredients={this.props.selectedIngredients}
           />
 
           <SelectedIngredients
             ingredients={this.props.selectedIngredients}
-            onClick={toggleIngredient}
+            onClick={this.props.toggleIngredient}
           />
 
         </div>

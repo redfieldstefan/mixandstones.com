@@ -1,0 +1,127 @@
+.CreateCocktailPage {
+  width: 100%;
+  display: inline-block;
+}
+
+/*COCKTAIL INSTRUCTION STEPS*/
+.create-cocktail-current-step {
+  display: block;
+  width: 65%;
+  float: left;
+}
+
+.StepSelect {
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.StepSelect:hover {
+  background-color: LightSkyBlue;
+  color: white;
+  transition: background-color ease-in-out .3s;
+}
+
+.selected-true, .selected-true:hover{
+  background-color: #26d9d0;
+  color: white;
+  font-weight: bold;
+  transition: background-color ease-in-out .25s;
+}
+
+.step-select-icon {
+  margin: 0 auto;
+  padding-bottom: 1em;
+  width: 75px;
+}
+
+.create-cocktail-steps {
+  display: inline-block;
+  margin: 0 15%;
+  width: 70%;
+}
+
+.create-cocktail-step {
+  float: left;
+  width: 25%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.step-section {
+  opacity: 1;
+  transition: opacity ease-in-out 3s;
+}
+
+.step-basic, .step-instructions {
+  margin: 0 15%;
+  width: 70%;
+}
+
+.step-description {
+  padding: 1em;
+}
+
+/*NEW COCKTAIL*/
+.create-cocktail-sidebar {
+  position: relative;
+  display: inline-block;
+  width: 35%;
+  min-height: 85vh;
+  padding: 1em;
+  background-color: #404040;
+  color: white;
+  border: 20px solid #4d4d4d;
+}
+
+.new-cocktail-name {
+  margin-top: 1em;
+  font-size: 1.5em;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.new-cocktail-description {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.create-cocktail-upload-photo {
+  cursor: pointer;
+  padding-top: 3em;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.create-cocktail-upload-image {
+  width: 100%;
+}
+
+.create-cocktail-nudge {
+  text-align: center;
+  margin-top: 63%;
+  color: #a9a9a9;
+  text-transform: uppercase;
+  font-size: .8em;
+}
+
+.create-cocktail-button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: none;
+  width: 100%;
+  padding: 20px 0;
+  background-color: tomato;
+  color: white;
+  text-transform: uppercase;
+}
