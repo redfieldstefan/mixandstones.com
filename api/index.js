@@ -10,16 +10,16 @@ var ingredients = express.Router();
 var server,
   port;
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mixandstones_store');
+mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/mixandstones_store");
 
 server = http.createServer(app);
 
 app.use(express.static(__dirname + "/build/index.html"));
 
-require('./ingredients')(ingredients);
-require('./cocktails')(cocktails);
-app.use('/api', ingredients);
-app.use('/api', cocktails);
+require("./ingredients")(ingredients);
+require("./cocktails")(cocktails);
+app.use("/api", ingredients);
+app.use("/api", cocktails);
 
 port = process.env.PORT || 4000;
 

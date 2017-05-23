@@ -35,20 +35,20 @@ module.exports = function(router) {
   router.get("/calculate-cocktails", function (req, res) {
     var ingredients = req.body;
     Cocktail.find({
-        ingredients: {
-          $not: {
-            $elemMatch: {
-              $nin: ingredients
-            }
+      ingredients: {
+        $not: {
+          $elemMatch: {
+            $nin: ingredients
           }
         }
-      })
-      .then((data) => {
-        return res.status(200).json({msg: "Here are all right cocktails", cocktails: data});
-      })
-      .catch(err => {
-        console.log(err);
-        return res.status(500).json({msg: "There was an error fetching cocktails"});
-      });
+      }
+    })
+    .then((data) => {
+      return res.status(200).json({msg: "Here are all right cocktails", cocktails: data});
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({msg: "There was an error fetching cocktails"});
+    });
   })
 };

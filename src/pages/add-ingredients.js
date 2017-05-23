@@ -3,41 +3,53 @@ import React, { Component } from "react";
 import AddIngredientForm from "../components/add-ingredient-form";
 import BasePage from "../components/base-page";
 import ingredientActions from "../actions/ingredients";
+import {bindMethods} from '../utils';
 
 class AddIngredients extends Component {
 
+  constructor(props) {
+    super(props);
+
+    bindMethods([
+      '_handleChange',
+      '_addIngredient',
+      '_handleImage'
+    ], this);
+  }
+
+  _handleChange(e) {
+    e.preventDefault();
+
+    const {name, value} = e.target;
+    this.props.updateIngredient({
+      [name]: value
+    });
+  }
+
+  _addIngredient(e) {
+    e.preventDefault();
+
+    this.props.addIngredient(this.props.ingredient)
+  }
+
+  _handleImage(e) {
+    e.preventDefault();
+
+    this.props.updateIngredient({
+      imageFile: e.target.files[0]
+    });
+  }
+
   render () {
-    const _handleChange = (e) => {
-      e.preventDefault();
-      const {name, value} = e.target;
-
-      this.props.updateIngredient({
-        [name]: value
-      });
-    };
-
-    const _handleImage = (e) => {
-      e.preventDefault();
-
-      this.props.updateIngredient({
-        imageFile: e.target.files[0]
-      });
-    }
-
-    const _addIngredient = (e) => {
-      e.preventDefault();
-      this.props.addIngredient(this.props.ingredient)
-    };
-
     return (
       <BasePage>
         <div className="AddIngredientPage">
           <h1>Add Ingredient</h1>
           <AddIngredientForm
             ingredient={this.props.ingredient}
-            onChange={_handleChange}
-            onSubmit={_addIngredient}
-            handleImage={_handleImage}
+            onChange={this._handleChange}
+            onSubmit={this._addIngredient}
+            handleImage={this._handleImage}
           />
         </div>
       </BasePage>

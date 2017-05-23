@@ -1,9 +1,9 @@
-import React from 'react';
-import 'whatwg-fetch';
+import React from "react";
+import "whatwg-fetch";
 import {
   BrowserRouter as Router,
   Route
-} from 'react-router-dom'
+} from "react-router-dom"
 import { Home, Ingredients, AddIngredients, CreateCocktail } from "./pages/index";
 import { Nav } from "./components";
 

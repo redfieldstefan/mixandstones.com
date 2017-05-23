@@ -7,7 +7,7 @@ export default {
     return fetch("/api/create-ingredient", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(ingredient)
     })
@@ -17,7 +17,7 @@ export default {
     return fetch("/api/ingredients", {
       method: "GET",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     })
     .then(parseJSON);
@@ -27,7 +27,7 @@ export default {
     return fetch("/api/calculate-cocktails", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: ingredients
     })
