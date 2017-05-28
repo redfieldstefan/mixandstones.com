@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route
 } from "react-router-dom"
-import { Home, Ingredients, AddIngredients, CreateCocktail } from "./pages/index";
+import { CocktailsIndex, Home, Ingredients, AddIngredients, CreateCocktail } from "./pages/index";
 import { Nav } from "./components";
 
 const App = () => {
@@ -14,6 +14,7 @@ const App = () => {
         <Nav />
         <Route exact path='/' component={CreateCocktail} />
         <Route path='/ingredients' component={Ingredients} />
+        <Route path='/cocktails' component={CocktailsIndex} />
         <Route path='/add-ingredients' component={AddIngredients} />
         <Route path='/create-cocktail' component={CreateCocktail} />
       </div>

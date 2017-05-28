@@ -10,6 +10,12 @@ export const CHANGE_FIELD = "CHANGE_FIELD";
 import api from "../api";
 
 const actions = {
+  allCocktails: (cocktails) => {
+    return {
+      type: ALL_COCKTAILS,
+      cocktails: cocktails
+    }
+  },
   createCocktail: (cocktail) => (dispatch) => {
     const file = cocktail.imageFile;
     var bucket = new AWS.S3({ params: { Bucket: "mix-and-stones-cocktails"} });
@@ -38,10 +44,7 @@ const actions = {
   fetchAllCocktails: () => (dispatch) => {
     api.fetchAllCocktails()
       .then((data) => {
-        return {
-          type: ALL_COCKTAILS,
-          cocktails: data.cocktails
-        }
+        dispatch(actions.allCocktails(data.cocktails));
       });
   },
   changeStep: (step) => {
