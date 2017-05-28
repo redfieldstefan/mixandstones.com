@@ -20,11 +20,16 @@ class CreateCocktail extends Component {
     this.props.fetchAllIngredients();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.cocktailCreated.url) {
+      nextProps.history.push(`/cocktail/${nextProps.cocktailCreated.url}`);
+    }
+  }
+
   render () {
 
     const {
       addImage,
-      cocktail,
       changeField,
       changeStep,
       createCocktail,
@@ -32,9 +37,7 @@ class CreateCocktail extends Component {
       ingredients,
       newCocktail,
       selectedIngredients,
-      toggleIngredient,
-      updateCocktail,
-      updateIngredient
+      toggleIngredient
     } = this.props;
 
     const _createCocktail = () => {
@@ -168,9 +171,10 @@ class CreateCocktail extends Component {
 
 const mapStateToProps = ({ingredients, cocktails, newCocktail}) => {
   return {
+    cocktailCreated: cocktails.currentCocktail,
+    currentStep: cocktails.currentStep,
     ingredients: ingredients.ingredientsList,
     selectedIngredients: ingredients.selectedIngredients,
-    currentStep: cocktails.currentStep,
     newCocktail
   }
 };
@@ -186,9 +190,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchAllIngredients: () => {
       dispatch(ingredientActions.fetchAllIngredients());
-    },
-    updateCocktail: (cocktail) => {
-      dispatch(cocktailActions.updateCocktail());
     },
     toggleIngredient: (ingredient) => {
       dispatch(ingredientActions.toggleIngredient(ingredient));

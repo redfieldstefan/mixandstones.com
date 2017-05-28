@@ -1,5 +1,5 @@
 import React from "react";
-import PropType from "prop-types";
+import PropTypes from "prop-types";
 import classnames from "classnames";
 
 const CocktailLi = ({className, image, name, description}) => (
@@ -11,10 +11,10 @@ const CocktailLi = ({className, image, name, description}) => (
 );
 
 CocktailLi.propTypes = {
-  className: PropType.string,
-  image: PropType.string,
-  name: PropType.string.isRequired,
-  description: PropType.string.isRequired
+  className: PropTypes.string,
+  image: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
 };
 
 export default CocktailLi

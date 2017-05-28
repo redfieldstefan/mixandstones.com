@@ -24,7 +24,7 @@ module.exports = function(router) {
 
     newCocktail.save()
       .then((data) => {
-        return res.status(200).json({msg: `${newCocktail.name} has been created`, data})
+        return res.status(200).json({msg: `${newCocktail.name} has been created`, cocktail: data});
       })
       .catch(err => {
         console.log(err);

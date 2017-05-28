@@ -1,13 +1,13 @@
 import AddIngredients from "./add-ingredients";
 import CocktailsIndex from "./cocktails-index";
+import CocktailPage from "./cocktail";
 import CreateCocktail from "./create-cocktail";
-import Home from "./home";
 import Ingredients from "./ingredients";
 
 export {
   AddIngredients,
   CocktailsIndex,
+  CocktailPage,
   CreateCocktail,
-  Home,
   Ingredients
 };

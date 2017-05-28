@@ -1,9 +1,10 @@
-import { ALL_COCKTAILS, CHANGE_STEP } from "../actions/cocktails";
+import { ALL_COCKTAILS, CHANGE_STEP, COCKTAIL_CREATED } from "../actions/cocktails";
 
 const initialState = {
   currentStep: "Basics",
-  allCocktails: []
-}
+  allCocktails: [],
+  currentCocktail: {}
+};
 
 export const cocktails = (state = initialState, action) => {
   switch(action.type){
@@ -16,6 +17,11 @@ export const cocktails = (state = initialState, action) => {
       return {
         ...state,
         allCocktails: action.cocktails
+      };
+    case COCKTAIL_CREATED:
+      return {
+        ...state,
+        currentCocktail: action.cocktail
       };
     default:
       return state;
