@@ -1,0 +1,27 @@
+.CocktailLi {
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  width: 25%;
+  float: left;
+  -webkit-box-shadow: 2px 2px 5px 0px  rgba(0,0,0,0.25);
+  -moz-box-shadow: 2px 2px 5px 0px  rgba(0,0,0,0.25);
+  box-shadow: 2px 2px 5px 0px  rgba(0,0,0,0.25);
+}
+
+.CocktailLi:hover {
+  -webkit-box-shadow: 5px 5px 5px 0px  rgba(0,0,0,0.25);
+  -moz-box-shadow: 5px 5px 5px 0px  rgba(0,0,0,0.25);
+  box-shadow: 5px 5px 5px 0px  rgba(0,0,0,0.25);
+}
+
+.CocktailLi:active {
+  -webkit-box-shadow: 0px 0px 5px 0px  rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 5px 0px  rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 5px 0px  rgba(0,0,0,0.25);
+}
+
+.cocktail-li-image {
+  width: 100%;
+  padding: 1em;
+}

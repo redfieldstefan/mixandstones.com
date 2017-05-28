@@ -23,13 +23,12 @@ export default {
     .then(parseJSON);
   },
 
-  calculateCocktails: (ingredients) => {
-    return fetch("/api/calculate-cocktails", {
-      method: "POST",
+  fetchAllCocktails: () => {
+    return fetch("/api/cocktails", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
       },
-      body: ingredients
     })
     .then(parseJSON)
   },

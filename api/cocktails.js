@@ -7,6 +7,17 @@ var urlify = require("./helpers/urlify");
 module.exports = function(router) {
   router.use(bodyparser.json());
 
+  router.get("/cocktails", function(req, res) {
+    Cocktail.find({})
+    .then((data) => {
+      return res.status(200).json({msg: "Here are all the cocktails", cocktails: data});
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({msg: "There was an error fetching cocktails"});
+    });
+  });
+
   router.post("/create-cocktail", function(req, res) {
     var newCocktail = new Cocktail(req.body);
     newCocktail.url = urlify(req.body.name);
@@ -18,17 +29,6 @@ module.exports = function(router) {
       .catch(err => {
         console.log(err);
         return res.status(500).json({msg: "There was an error creating your cocktail"});
-      });
-  });
-
-  router.get("/cocktails", function(req, res) {
-    Cocktail.find({})
-      .then((data) => {
-        return res.status(200).json({msg: "Here are all the cocktails", cocktails: data});
-      })
-      .catch(err => {
-        console.log(err);
-        return res.status(500).json({msg: "There was an error fetching cocktails"});
       });
   });
 

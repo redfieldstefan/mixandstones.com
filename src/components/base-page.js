@@ -1,9 +1,10 @@
 import React from "react";
+import classnames from "classnames";
 
-const BasePage = ({children}) => {
+const BasePage = ({children, className}) => {
 
   return (
-    <div className="BasePage">
+    <div className={classnames("BasePage", className)}>
       {children}
     </div>
   );

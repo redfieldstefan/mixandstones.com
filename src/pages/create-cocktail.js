@@ -53,120 +53,114 @@ class CreateCocktail extends Component {
     );
 
     return (
-      <BasePage>
-        <div className="CreateCocktailPage">
-          <section className="create-cocktail-current-step">
+      <BasePage className="CreateCocktailPage">
+        <section className="create-cocktail-current-step">
+          <div className="create-cocktail-steps">
+            <StepSelect
+              image={basics}
+              className={`create-cocktail-step selected-${currentStep === "Basics"}`}
+              step="Basics"
+              onClick={changeStep}
+            />
+            <StepSelect
+              image={cherry}
+              className={`create-cocktail-step selected-${currentStep === "Choose Ingredients"}`}
+              step="Choose Ingredients"
+              onClick={changeStep}
+            />
+            <StepSelect
+              image={create}
+              className={`create-cocktail-step selected-${currentStep === "Write Instructions"}`}
+              step="Write Instructions"
+              onClick={changeStep}
+            />
+            <StepSelect
+              image={uploadImage}
+              className={`create-cocktail-step selected-${currentStep === "Add Image"}`}
+              step="Add Image"
+              onClick={changeStep}
+            />
+          </div>
 
-            <div className="create-cocktail-steps">
-              <StepSelect
-                image={basics}
-                className={`create-cocktail-step selected-${currentStep === "Basics"}`}
-                step="Basics"
-                onClick={changeStep}
-              />
-              <StepSelect
-                image={cherry}
-                className={`create-cocktail-step selected-${currentStep === "Choose Ingredients"}`}
-                step="Choose Ingredients"
-                onClick={changeStep}
-              />
-              <StepSelect
-                image={create}
-                className={`create-cocktail-step selected-${currentStep === "Write Instructions"}`}
-                step="Write Instructions"
-                onClick={changeStep}
-              />
-              <StepSelect
-                image={uploadImage}
-                className={`create-cocktail-step selected-${currentStep === "Add Image"}`}
-                step="Add Image"
-                onClick={changeStep}
-              />
-            </div>
-
-            {
-              currentStep === "Basics" &&
-              <div className="step-basic">
-                <TextInput
-                  className="full-width"
-                  name="name"
-                  value={newCocktail.name}
-                  placeholder="Choose Name"
-                  onChange={changeField}
-                />
-                <textarea
-                  className="TextArea step-description full-width"
-                  name="description"
-                  placeholder="Brief description of your cocktail" onChange={changeField}
-                  value={newCocktail.value}
-                />
-              </div>
-            }
-
-            {
-              currentStep === "Choose Ingredients" &&
-              <IngredientsList
-                className="create-cocktail-add-to-list full-width step-section"
-                ingredients={ingredients}
-                selectedIngredients={selectedIngredients}
-                toggleIngredient={toggleIngredient}
-
-              />
-            }
-
-            {
-              currentStep === "Write Instructions" &&
-              <textarea
-                name="instructions"
-                className="TextArea step-instructions step-section"
-                placeholder="Enter instructions for your cocktail"
+          {
+            currentStep === "Basics" &&
+            <div className="step-basic">
+              <TextInput
+                className="full-width"
+                name="name"
+                value={newCocktail.name}
+                placeholder="Choose Name"
                 onChange={changeField}
               />
-            }
+              <textarea
+                className="TextArea step-description full-width"
+                name="description"
+                placeholder="Brief description of your cocktail" onChange={changeField}
+                value={newCocktail.value}
+              />
+            </div>
+          }
+          {
+            currentStep === "Choose Ingredients" &&
+            <IngredientsList
+              className="create-cocktail-add-to-list full-width step-section"
+              ingredients={ingredients}
+              selectedIngredients={selectedIngredients}
+              toggleIngredient={toggleIngredient}
 
-            {
-              currentStep === "Add Image" &&
-              <div>
-                <label className="create-cocktail-upload-photo" for="imageFile">
-                  <img src={uploadImage} className="create-cocktail-upload-image" />
-                  Choose a file
-                  <input
-                    className="step-section display-none"
-                    id="file-selector"
-                    type="file"
-                    name="imageFile"
-                    accept="image/*"
-                    onChange={addImage}
-                  />
-                </label>
-              </div>
-            }
-          </section>
-
-          <section className="create-cocktail-sidebar">
-            { notStarted &&
-              <p className="create-cocktail-nudge">
-                Start creating your cocktail
-              </p>
-            }
-            <h3 className="new-cocktail-name color-light-orange">{newCocktail.name}</h3>
-            <p className="new-cocktail-description">{newCocktail.description}</p>
-            <SelectedIngredients
-              className="full-width new-cocktail-ingredients"
-              ingredients={selectedIngredients}
-              onClick={toggleIngredient}
             />
-            <p className="margin-top full-width left new-cocktail-instructions">
-              {newCocktail.instructions}
+          }
+          {
+            currentStep === "Write Instructions" &&
+            <textarea
+              name="instructions"
+              className="TextArea step-instructions step-section"
+              placeholder="Enter instructions for your cocktail"
+              onChange={changeField}
+            />
+          }
+          {
+            currentStep === "Add Image" &&
+            <div>
+              <label className="create-cocktail-upload-photo" for="imageFile">
+                <img src={uploadImage} className="create-cocktail-upload-image" />
+                Choose a file
+                <input
+                  className="step-section display-none"
+                  id="file-selector"
+                  type="file"
+                  name="imageFile"
+                  accept="image/*"
+                  onChange={addImage}
+                />
+              </label>
+            </div>
+          }
+        </section>
+
+        <section className="create-cocktail-sidebar">
+          { notStarted &&
+            <p className="create-cocktail-nudge">
+              Start creating your cocktail
             </p>
-            <button
-              className="create-cocktail-button"
-              onClick={_createCocktail}
-            >
-              Create Cocktail
-            </button>
-          </section>
-        </div>
+          }
+          <h3 className="new-cocktail-name color-light-orange">{newCocktail.name}</h3>
+          <p className="new-cocktail-description">{newCocktail.description}</p>
+          <SelectedIngredients
+            className="full-width new-cocktail-ingredients"
+            ingredients={selectedIngredients}
+            onClick={toggleIngredient}
+          />
+          <p className="margin-top full-width left new-cocktail-instructions">
+            {newCocktail.instructions}
+          </p>
+          <button
+            className="create-cocktail-button"
+            onClick={_createCocktail}
+          >
+            Create Cocktail
+          </button>
+        </section>
       </BasePage>
     )
   }
