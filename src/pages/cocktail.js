@@ -1,39 +1,44 @@
 import React, { Component } from "react";
+import BasePage from "../components/base-page";
 import { connect } from "react-redux";
 import cocktailActions from "../actions/cocktails";
 
 class CocktailPage extends Component {
 
   componentDidMount() {
-    if(!this.props.cocktail) {
+    if(!this.props.cocktail.url) {
       const cocktailUrl = this.props.match.params.cocktail;
       this.props.fetchCocktail(cocktailUrl);
     }
   }
 
   render() {
-    return (
-      <div className="CocktailPage">
-        <h1>AHHHHH</h1>
-      </div>
-    )
-  }
 
+    const {
+      cocktail
+    } = this.props;
+
+    return (
+      <BasePage className="CocktailPage">
+        <h1>{cocktail.name}</h1>
+        <p>{cocktail.description}</p>
+      </BasePage>
+    );
+  }
 }
 
 const mapStateToProps = ({cocktails}) => {
   return {
     cocktail: cocktails.currentCocktail
-  }
+  };
 };
 
 const mapDispatchToProps = (dipatch) => {
  return {
     fetchCocktail: (url) => {
-      console.log("Url")
-      console.log(url)
+      dipatch(cocktailActions.fetchCocktail(url));
     }
- }
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CocktailPage);

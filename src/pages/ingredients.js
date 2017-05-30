@@ -7,7 +7,9 @@ import ingredientActions from "../actions/ingredients";
 class Ingredients extends Component {
 
   componentDidMount() {
-    this.props.fetchAllIngredients();
+    if(!this.props.ingredients.length) {
+      this.props.fetchAllIngredients();
+    }
   }
 
   render() {

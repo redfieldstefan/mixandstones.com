@@ -17,7 +17,12 @@ import uploadImage from "../../images/ic_add_to_photos_black_48px.svg";
 class CreateCocktail extends Component {
 
   componentDidMount() {
-    this.props.fetchAllIngredients();
+    if(!this.props.ingredients.length) {
+      this.props.fetchAllIngredients();
+    }
+    if(this.props.cocktailCreated) {
+      this.props.clearCocktail();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -200,6 +205,9 @@ const mapDispatchToProps = (dispatch) => {
     changeField: (e) => {
       const { name, value } = e.target;
       dispatch(cocktailActions.changeField({[name]: value}));
+    },
+    clearCocktail: () => {
+      dispatch(cocktailActions.clearCocktail());
     },
     createCocktail: (cocktail) => {
       dispatch(cocktailActions.createCocktail(cocktail));
