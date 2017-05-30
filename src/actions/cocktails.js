@@ -1,19 +1,43 @@
+import api from "../api";
 import AWS from "aws-sdk"
 import awsConfig from "../../aws.json";
 
 export const ALL_COCKTAILS = "ALL_COCKTAILS";
-export const CREATE_COCKTAIL = "CREATE_COCKTAIL";
-export const COCKTAIL_CREATED = "COCKTAIL_CREATED";
 export const CHANGE_STEP = "CHANGE_STEP";
 export const CHANGE_FIELD = "CHANGE_FIELD";
-
-import api from "../api";
+export const CLEAR_COCKTAIL = "CLEAR_COCKTAIL";
+export const COCKTAIL_CREATED = "COCKTAIL_CREATED";
+export const CREATE_COCKTAIL = "CREATE_COCKTAIL";
+export const SELECT_COCKTAIL = "SELECT_COCKTAIL";
 
 const actions = {
   allCocktails: (cocktails) => {
     return {
       type: ALL_COCKTAILS,
       cocktails: cocktails
+    }
+  },
+  changeStep: (step) => {
+    return {
+      type: CHANGE_STEP,
+      step
+    }
+  },
+  changeField: (field) => {
+    return {
+      type: CHANGE_FIELD,
+      field
+    }
+  },
+  clearCocktail: () => {
+    return {
+      type: CLEAR_COCKTAIL
+    }
+  },
+  cocktailCreated: (cocktail) => {
+    return {
+      type: COCKTAIL_CREATED,
+      cocktail
     }
   },
   createCocktail: (cocktail) => (dispatch) => {
@@ -35,28 +59,22 @@ const actions = {
         });
     });
   },
-  cocktailCreated: (cocktail) => {
-    return {
-      type: COCKTAIL_CREATED,
-      cocktail
-    }
-  },
   fetchAllCocktails: () => (dispatch) => {
     api.fetchAllCocktails()
       .then((data) => {
         dispatch(actions.allCocktails(data.cocktails));
       });
   },
-  changeStep: (step) => {
-    return {
-      type: CHANGE_STEP,
-      step
-    }
+  fetchCocktail: (url) => (dispatch) => {
+    api.fetchCocktail(url)
+      .then(({cocktail}) => {
+        dispatch(actions.selectCocktail(cocktail));
+      });
   },
-  changeField: (field) => {
+  selectCocktail: (cocktail) => {
     return {
-      type: CHANGE_FIELD,
-      field
+      type: SELECT_COCKTAIL,
+      cocktail
     }
   }
 };

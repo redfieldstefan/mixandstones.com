@@ -1,13 +1,15 @@
 import { connect } from "react-redux";
 import React, {Component} from "react";
-import { Tile, IngredientsList, SelectedIngredients } from "../components"
+import { IngredientsList, SelectedIngredients } from "../components"
 import BasePage from "../components/base-page";
 import ingredientActions from "../actions/ingredients";
 
 class Ingredients extends Component {
 
   componentDidMount() {
-    this.props.fetchAllIngredients();
+    if(!this.props.ingredients.length) {
+      this.props.fetchAllIngredients();
+    }
   }
 
   render() {

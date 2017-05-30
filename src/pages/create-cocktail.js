@@ -17,14 +17,24 @@ import uploadImage from "../../images/ic_add_to_photos_black_48px.svg";
 class CreateCocktail extends Component {
 
   componentDidMount() {
-    this.props.fetchAllIngredients();
+    if(!this.props.ingredients.length) {
+      this.props.fetchAllIngredients();
+    }
+    if(this.props.cocktailCreated) {
+      this.props.clearCocktail();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.cocktailCreated.url) {
+      nextProps.history.push(`/cocktail/${nextProps.cocktailCreated.url}`);
+    }
   }
 
   render () {
 
     const {
       addImage,
-      cocktail,
       changeField,
       changeStep,
       createCocktail,
@@ -32,9 +42,7 @@ class CreateCocktail extends Component {
       ingredients,
       newCocktail,
       selectedIngredients,
-      toggleIngredient,
-      updateCocktail,
-      updateIngredient
+      toggleIngredient
     } = this.props;
 
     const _createCocktail = () => {
@@ -168,9 +176,10 @@ class CreateCocktail extends Component {
 
 const mapStateToProps = ({ingredients, cocktails, newCocktail}) => {
   return {
+    cocktailCreated: cocktails.currentCocktail,
+    currentStep: cocktails.currentStep,
     ingredients: ingredients.ingredientsList,
     selectedIngredients: ingredients.selectedIngredients,
-    currentStep: cocktails.currentStep,
     newCocktail
   }
 };
@@ -187,9 +196,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchAllIngredients: () => {
       dispatch(ingredientActions.fetchAllIngredients());
     },
-    updateCocktail: (cocktail) => {
-      dispatch(cocktailActions.updateCocktail());
-    },
     toggleIngredient: (ingredient) => {
       dispatch(ingredientActions.toggleIngredient(ingredient));
     },
@@ -199,6 +205,9 @@ const mapDispatchToProps = (dispatch) => {
     changeField: (e) => {
       const { name, value } = e.target;
       dispatch(cocktailActions.changeField({[name]: value}));
+    },
+    clearCocktail: () => {
+      dispatch(cocktailActions.clearCocktail());
     },
     createCocktail: (cocktail) => {
       dispatch(cocktailActions.createCocktail(cocktail));

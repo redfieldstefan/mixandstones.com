@@ -18,13 +18,24 @@ module.exports = function(router) {
     });
   });
 
+  router.post("/find-cocktail", function(req, res) {
+    Cocktail.find({url: req.body.url})
+    .then((data) => {
+      return res.status(200).json({msg: "Here's your cocktail", cocktail: data[0]});
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({msg: "There was an error fetching individual cocktail"});
+    });
+  });
+
   router.post("/create-cocktail", function(req, res) {
     var newCocktail = new Cocktail(req.body);
     newCocktail.url = urlify(req.body.name);
 
     newCocktail.save()
       .then((data) => {
-        return res.status(200).json({msg: `${newCocktail.name} has been created`, data})
+        return res.status(200).json({msg: `${newCocktail.name} has been created`, cocktail: data});
       })
       .catch(err => {
         console.log(err);

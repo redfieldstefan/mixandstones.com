@@ -13,6 +13,17 @@ export default {
     })
   },
 
+  createCocktail: (cocktail) => {
+    return fetch("/api/create-cocktail", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cocktail)
+    })
+    .then(parseJSON)
+  },
+
   fetchAllIngredients: (ingredient) => {
     return fetch("/api/ingredients", {
       method: "GET",
@@ -33,14 +44,15 @@ export default {
     .then(parseJSON)
   },
 
-  createCocktail: (cocktail) => {
-    return fetch("/api/create-cocktail", {
+  fetchCocktail: (url) => {
+    return fetch("/api/find-cocktail", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(cocktail)
+      body: JSON.stringify({url})
     })
-    .then(parseJSON)
+    .then(parseJSON);
   }
+
 };

@@ -1,15 +1,24 @@
 import React from "react";
 import "whatwg-fetch";
+import createBrowserHistory from 'history/createBrowserHistory';
 import {
   BrowserRouter as Router,
   Route
 } from "react-router-dom"
-import { CocktailsIndex, Home, Ingredients, AddIngredients, CreateCocktail } from "./pages/index";
+import {
+  AddIngredients,
+  CocktailsIndex,
+  CocktailPage,
+  CreateCocktail,
+  Ingredients
+} from "./pages/index";
 import { Nav } from "./components";
+
+const history = createBrowserHistory();
 
 const App = () => {
   return (
-    <Router>
+    <Router history={history}>
       <div>
         <Nav />
         <Route exact path='/' component={CreateCocktail} />
@@ -17,6 +26,7 @@ const App = () => {
         <Route path='/cocktails' component={CocktailsIndex} />
         <Route path='/add-ingredients' component={AddIngredients} />
         <Route path='/create-cocktail' component={CreateCocktail} />
+        <Route path='/cocktail/:cocktail' component={CocktailPage} />
       </div>
     </Router>
   )
