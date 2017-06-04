@@ -1,0 +1,23 @@
+.glasses-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.GlassTile {
+  width: 200px;
+  flex-grow: 1;
+  width: 20%;
+  padding: 10px;
+  text-align: center;
+}
+
+.GlassTile img {
+  width: 100%;
+}
+
+.GlassTile:hover {
+  background-color: LightSkyBlue;
+  color: white;
+  cursor: pointer;
+  transition: background-color ease-in-out .3s;
+}

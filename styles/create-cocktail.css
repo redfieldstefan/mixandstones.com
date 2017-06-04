@@ -8,6 +8,9 @@
   display: block;
   width: 65%;
   float: left;
+  overflow-y: scroll;
+  height: 85vh;
+  margin-top: 2em;
 }
 
 .StepSelect {
@@ -21,13 +24,6 @@
   background-color: LightSkyBlue;
   color: white;
   transition: background-color ease-in-out .3s;
-}
-
-.selected-true, .selected-true:hover{
-  background-color: #26d9d0;
-  color: white;
-  font-weight: bold;
-  transition: background-color ease-in-out .25s;
 }
 
 .step-select-icon {
@@ -58,8 +54,8 @@
 }
 
 .step-basic, .step-instructions {
-  margin: 0 15%;
-  width: 70%;
+  margin: 0 5%;
+  width: 90%;
 }
 
 .step-description {
@@ -71,11 +67,15 @@
   position: relative;
   display: inline-block;
   width: 35%;
-  min-height: 85vh;
+  height: 85vh;
   padding: 1em;
-  background-color: #404040;
-  color: white;
-  border: 20px solid #4d4d4d;
+  color: black;
+  border-left: 2px dashed whiteSmoke;
+}
+
+.new-cocktail-glass {
+  width: 100px;
+  float: left;
 }
 
 .new-cocktail-name {
@@ -83,13 +83,10 @@
   font-size: 1.5em;
   font-weight: 500;
   text-transform: uppercase;
-  text-align: center;
-  text-decoration: underline;
 }
 
 .new-cocktail-description {
   margin-top: 1em;
-  text-align: center;
 }
 
 .create-cocktail-upload-photo {

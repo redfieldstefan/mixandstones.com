@@ -1,5 +1,5 @@
 .Nav {
-  background: linear-gradient( 45deg, #26d9d0, #136c68);
+  background: #26d9d0;
   position: fixed;
   height: 60px;
   width: 100%;
@@ -11,6 +11,7 @@
   box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
   padding: 0 3em;
   width: 100%;
+  z-index: 100;
 }
 
 .Nav-logo {
@@ -42,4 +43,8 @@
   list-style: none;
   padding: 0 1em;
   font-size: .8em;
+}
+
+.navLink:hover {
+  color: tomato;
 }
