@@ -2,11 +2,13 @@ import BasePage from "../components/base-page";
 import { connect } from "react-redux";
 import React, { Component } from "react";
 import cocktailActions from "../actions/cocktails";
+import glasses from "../utils/glasses";
 import ingredientActions from "../actions/ingredients";
 import IngredientsList from "../components/ingredients-list";
 import SelectedIngredients from "../components/selected-ingredients";
 import StepSelect from "../components/step-select";
 import TextInput from "../components/text-input";
+import GlassTile from "../components/glass-tile";
 
 // Icons
 import basics from "../../images/ic_assignment_black_24px.svg";
@@ -41,6 +43,7 @@ class CreateCocktail extends Component {
       currentStep,
       ingredients,
       newCocktail,
+      selectGlass,
       selectedIngredients,
       toggleIngredient
     } = this.props;
@@ -54,6 +57,7 @@ class CreateCocktail extends Component {
     };
 
     const notStarted = (
+      !newCocktail.glass &&
       !newCocktail.name.length &&
       !newCocktail.description.length &&
       !selectedIngredients.length &&
@@ -106,6 +110,19 @@ class CreateCocktail extends Component {
                 placeholder="Brief description of your cocktail" onChange={changeField}
                 value={newCocktail.value}
               />
+              <ul className="glasses-list">
+                {
+                  glasses.map((glass, i) => (
+                    <GlassTile
+                      className={`hover-blue selected-${newCocktail.glass === glass}`}
+                      key={i}
+                      glass={glass}
+                      onClick={selectGlass}
+                    />
+                  ))
+                }
+              </ul>
+
             </div>
           }
           {
@@ -152,7 +169,15 @@ class CreateCocktail extends Component {
               Start creating your cocktail
             </p>
           }
-          <h3 className="new-cocktail-name color-light-orange">{newCocktail.name}</h3>
+          {
+            newCocktail.glass &&
+            <img
+              className="new-cocktail-glass"
+              src={newCocktail.glass.image}
+              alt={newCocktail.glass.name}
+            />
+          }
+          <h3 className="new-cocktail-name">{newCocktail.name}</h3>
           <p className="new-cocktail-description">{newCocktail.description}</p>
           <SelectedIngredients
             className="full-width new-cocktail-ingredients"
@@ -193,12 +218,6 @@ const mapDispatchToProps = (dispatch) => {
         imageFile: e.target.files[0]
       }));
     },
-    fetchAllIngredients: () => {
-      dispatch(ingredientActions.fetchAllIngredients());
-    },
-    toggleIngredient: (ingredient) => {
-      dispatch(ingredientActions.toggleIngredient(ingredient));
-    },
     changeStep: (step) => {
       dispatch(cocktailActions.changeStep(step));
     },
@@ -211,6 +230,15 @@ const mapDispatchToProps = (dispatch) => {
     },
     createCocktail: (cocktail) => {
       dispatch(cocktailActions.createCocktail(cocktail));
+    },
+    fetchAllIngredients: () => {
+      dispatch(ingredientActions.fetchAllIngredients());
+    },
+    selectGlass: (glass) => {
+      dispatch(cocktailActions.changeField({"glass": glass}));
+    },
+    toggleIngredient: (ingredient) => {
+      dispatch(ingredientActions.toggleIngredient(ingredient));
     }
   };
 }
